@@ -1,0 +1,117 @@
+@use "sass:map";
+@use "./variables.scss" as v;
+
+// ---------------------------------------------------
+// Container
+// ---------------------------------------------------
+
+$containerSizes: (
+  xxl: (max-width: unset, ),
+);
+
+$containerSizesMW1200: map.merge($containerSizes,
+    (xxl: ()));
+
+$containerSizesMW1400: map.merge($containerSizes,
+    (xxl: (max-width: 1320px)));
+
+.container {
+  width: 100%;
+  padding-right: .75rem;
+  padding-left: .75rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+@each $size, $pair in $containerSizes {
+  .container-#{$size} {
+    width: 100%;
+    padding-right: .75rem;
+    padding-left: .75rem;
+    margin-right: auto;
+    margin-left: auto;
+
+    @each $property, $value in $pair {
+      #{$property}: $value;
+    }
+  }
+}
+
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+
+  @each $size, $pair in $containerSizesMW1200 {
+    .container-#{$size} {
+      @each $property, $value in $pair {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+
+  @each $size, $pair in $containerSizesMW1400 {
+    .container-#{$size} {
+      @each $property, $value in $pair {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------
+// Titles
+// ---------------------------------------------------
+
+.section-title {
+  color: v.$primary;
+  display: inline-block;
+  font-family: 'Pacifico', cursive;
+  font-weight: normal;
+
+  position: relative;
+
+  &.before::before,
+  &.after::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 45px;
+    top: 50%;
+    background-color: v.$primary;
+  }
+
+  &::before {
+    right: calc(100% + 10px);
+  }
+
+  &::after {
+    left: calc(100% + 10px);
+  }
+}

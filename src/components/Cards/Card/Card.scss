@@ -1,0 +1,15 @@
+@use "../../../styles/variables.scss" as v;
+@use "../../../styles/functions.scss" as f;
+
+.card {
+  background-color: transparent;
+  transition-duration: 0.5s;
+  padding: 0 f.pxToRem(12);
+
+  &__content {
+    background-color: v.$white;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    border-radius: 2px;
+    padding: f.pxToRem(40) f.pxToRem(24) f.pxToRem(24);
+  }
+}

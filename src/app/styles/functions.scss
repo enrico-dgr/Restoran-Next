@@ -1,0 +1,13 @@
+@use "sass:math";
+
+@function pxToRem($pixels) {
+  @return #{math.div($pixels, 16)}rem;
+}
+
+@mixin staggered-animation-delay($numItems, $baseDelay: 0.1, $increment: 0.2) {
+  @for $i from 1 through $numItems {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$baseDelay + ($increment * ($i - 1))}s;
+    }
+  }
+}

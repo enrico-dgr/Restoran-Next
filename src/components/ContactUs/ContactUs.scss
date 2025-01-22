@@ -1,0 +1,213 @@
+@use '../../styles/functions.scss' as f;
+@use '../../styles/variables.scss' as v;
+@use '../../styles/animations.scss' as *;
+@use 'sass:math';
+
+.section-contact-us {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+  }
+
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+
+    >* {
+      width: 100%;
+    }
+
+    .contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: f.pxToRem(24);
+
+      .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: calc(100% - f.pxToRem(24));
+
+        p {
+          margin-bottom: f.pxToRem(16);
+        }
+
+        svg {
+          color: v.$primary;
+        }
+      }
+    }
+
+    .send-message {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: f.pxToRem(24);
+
+      >* {
+        width: 100%
+      }
+
+      .map {
+        iframe {
+          border: 0;
+          height: 100%;
+          width: 100%;
+
+          min-height: 350px;
+        }
+      }
+    }
+  }
+
+  .form-container {
+
+    > :first-child {
+      opacity: 0;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: f.pxToRem(16);
+
+    >* {
+      position: relative;
+      width: 100%;
+    }
+
+    .date {
+      >* {
+        width: 100%;
+      }
+    }
+
+    .subject,
+    .message,
+    .confirm {
+      width: 100%;
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    input,
+    select,
+    textarea {
+      height: f.pxToRem(58);
+      width: 100%;
+      padding: f.pxToRem(26) f.pxToRem(12) f.pxToRem(10);
+
+      border: 1px solid #ced4da;
+      border-radius: 2px;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+      &::placeholder {
+        visibility: hidden;
+      }
+
+      &:focus {
+        color: #666565;
+        background-color: #fff;
+        border-color: #ffd08b;
+        outline: 0;
+        box-shadow: 0 0 0 .25rem rgba(254, 161, 22, 0.25);
+      }
+
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    label.in-use {
+      transform: scale(0.85) translate(4px, calc(-8px));
+      opacity: 0.8;
+    }
+
+    input,
+    select,
+    textarea {
+
+      &:not(:placeholder-shown)~label,
+      &:focus~label {
+        @extend .in-use;
+      }
+    }
+
+    select {
+      background-color: #fff;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right .75rem center;
+      background-size: 16px 12px;
+      appearance: none;
+    }
+
+    .message {
+      textarea {
+        height: f.pxToRem(150);
+      }
+    }
+
+    label {
+      padding: f.pxToRem(16) f.pxToRem(12);
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      pointer-events: none;
+
+      transform-origin: 0 0;
+      transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    }
+
+    select+label,
+    label.active,
+    label.has-data {
+      $percentageScaling: 0.85;
+      $translation: #{math.div(1 - $percentageScaling, 4) * 100} + '%';
+
+      transform: scale($percentageScaling) translate($translation, calc(-#{$translation} - 7.25%));
+      opacity: 0.8;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .section-contact-us {
+    &__content {
+      padding: 0 f.pxToRem(12);
+
+      .contacts {
+        .contact {
+          width: calc(33% - f.pxToRem(24));
+        }
+      }
+
+      .send-message {
+        >* {
+          width: calc(50% - f.pxToRem(24));
+          min-width: unset;
+        }
+      }
+    }
+
+    form {
+      >* {
+        width: calc(50% - f.pxToRem(8));
+      }
+    }
+  }
+}

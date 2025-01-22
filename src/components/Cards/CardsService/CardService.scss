@@ -1,0 +1,31 @@
+@use "../../../styles/variables.scss" as v;
+@use "../../../styles/functions.scss" as f;
+
+.card.is--service {
+
+  &:hover {
+
+    >* {
+      color: v.$white;
+      background-color: v.$primary;
+    }
+
+    h5,
+    svg {
+      color: v.$white;
+    }
+  }
+
+  h5 {
+    transition-duration: 0.6s;
+  }
+
+  svg {
+    color: v.$primary;
+    transition-duration: 0.5s;
+  }
+
+  p {
+    margin-bottom: f.pxToRem(16);
+  }
+}

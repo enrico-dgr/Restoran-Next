@@ -1,0 +1,35 @@
+@use "../../styles/functions.scss" as f;
+
+#spinner {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease-out, visibility 0s linear .5s;
+  z-index: 99999;
+
+  // Centering the whole block
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+
+  // Centering the spinner
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .spinner-border {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border: f.pxToRem(4) solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: .75s linear infinite full-rotation;
+  }
+}

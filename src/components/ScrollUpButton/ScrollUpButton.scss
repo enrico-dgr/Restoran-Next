@@ -1,0 +1,21 @@
+.scroll-up-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-out, visibility 0.5s;
+
+  height: 48px;
+  width: 48px;
+
+  position: fixed;
+  bottom: 45px;
+  right: 45px;
+  z-index: 100;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+}

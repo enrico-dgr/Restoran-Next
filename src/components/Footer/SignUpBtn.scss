@@ -1,0 +1,18 @@
+@use '../../styles/variables.scss' as v;
+
+.footer .sign-up {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+
+  input {
+    border: 1px solid v.$primary;
+    width: 100%;
+  }
+
+  .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

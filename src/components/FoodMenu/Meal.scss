@@ -1,0 +1,88 @@
+@use '../../styles/functions.scss' as f;
+@use '../../styles/variables.scss' as v;
+@use '../../styles/animations.scss' as *;
+
+.meal,
+.meal-placeholder {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  height: 80px;
+  width: 100%;
+
+  margin-top: f.pxToRem(24);
+
+  img,
+  .img {
+    background-color: v.$skeletonsGray;
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1;
+  }
+
+  &__description {
+    flex: 1;
+    height: 100%;
+  }
+
+  .name {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: f.pxToRem(8);
+    border-bottom: 1px solid v.$separatorsGray;
+    margin-bottom: f.pxToRem(8);
+  }
+
+  .description {
+    font-style: italic
+  }
+}
+
+.meal-placeholder {
+  .img {
+    @extend .shimmer;
+  }
+
+  .name {
+    span {
+      background-color: v.$skeletonsGray;
+      height: 18px;
+
+      @extend .shimmer;
+
+      &:first-child {
+        width: 50%;
+      }
+
+      &:nth-child(2) {
+        width: 25%;
+      }
+    }
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+
+    span {
+      background-color: v.$skeletonsGray;
+      height: 13px;
+
+      @extend .shimmer;
+
+      &:first-child {
+        width: 100%;
+        margin-bottom: 7px;
+      }
+
+      &:nth-child(2) {
+        width: 50%;
+      }
+
+
+    }
+  }
+}

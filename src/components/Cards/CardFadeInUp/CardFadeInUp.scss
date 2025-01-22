@@ -1,0 +1,12 @@
+@use '../../../styles/animations.scss' as *;
+@use '../../../styles/functions.scss' as f;
+
+
+.card.is--fade-in-up {
+  opacity: 0;
+
+  &.show {
+    @extend .fadeInUp;
+    opacity: 1;
+  }
+}

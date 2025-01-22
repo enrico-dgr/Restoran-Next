@@ -1,0 +1,74 @@
+@use "../../../styles/variables.scss" as v;
+@use "../../../styles/functions.scss" as f;
+
+.card.is--team {
+  &:hover {
+    .card__content {
+      height: 100%;
+
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: f.pxToRem(24) f.pxToRem(24) 0;
+
+    transition: .5s;
+    height: calc(100% - 38px);
+    overflow: hidden;
+
+    .img {
+      // display: flex;
+      // align-items: center;
+      // justify-content: center;
+      min-height: max-content;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      margin-bottom: f.pxToRem(20);
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        aspect-ratio: 1;
+        transition: .5s;
+      }
+    }
+  }
+
+  h5 {
+    transition-duration: 0.6s;
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-bottom: f.pxToRem(16);
+  }
+
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    a {
+      background-color: v.$primary;
+      height: 38px;
+      width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid v.$primary;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+
+      svg {
+        color: v.$white;
+      }
+    }
+  }
+}

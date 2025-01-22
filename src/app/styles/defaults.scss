@@ -1,0 +1,105 @@
+@use "functions" as f;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: #F1F8FF;
+  color: #666565;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+body,
+input,
+select,
+textarea {
+  font-family: "Heebo", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0F172B;
+}
+
+h1 {
+  font-size: calc(f.pxToRem(22) + 1.5vw);
+}
+
+h4 {
+  font-size: calc(1.275rem + .3vw);
+}
+
+h5 {
+  font-size: f.pxToRem(20);
+}
+
+h6 {
+  font-size: f.pxToRem(16);
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: f.pxToRem(40);
+  }
+}
+
+small {
+  font-size: f.pxToRem(14);
+}
+
+.btn {
+  display: inline-block;
+
+  color: #666565;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.5;
+  text-align: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: .375rem .75rem;
+
+  text-transform: uppercase;
+  transition-duration: .5s;
+  transition-timing-function: ease-in-out;
+
+  &:focus {
+    box-shadow: 0 0 0 .25rem rgba(216, 137, 19, 0.5);
+  }
+}

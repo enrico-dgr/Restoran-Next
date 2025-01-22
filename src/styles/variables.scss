@@ -1,0 +1,235 @@
+@use "./functions.scss" as f;
+@use "sass:map";
+
+// -----------
+// Colors
+// -----------
+$primary: #FEA116;
+$dark: #0F172B;
+$white: #fff;
+$light: #F1F8FF;
+$separatorsGray: #dee2e6;
+$skeletonsGray: #bababa;
+
+// Add colors here to use them in the project through derivations
+$colors: (
+  primary: $primary,
+  dark: $dark,
+  white: $white,
+  light: $light,
+);
+
+$colorsCombinations: (
+  primary: (first: $primary, second: $white ),
+  dark: (first: $dark, second: $primary ),
+);
+
+// Colors' derivations
+
+// This generate classes like ".text-primary" or ".bg-primary" ( we're emulating bootstrap classes )
+@each $name, $color in $colors {
+  .text-#{'' + $name} {
+    color: $color;
+  }
+
+  .bg-#{'' + $name} {
+    background-color: $color;
+  }
+}
+
+// This generate classes like ".btn-primary" or ".btn-primary-invert" ( we're emulating bootstrap classes )
+@each $name, $combination in $colorsCombinations {
+  .btn-#{'' + $name} {
+    color: map.get($combination, second);
+    background-color: map.get($combination, first);
+    border-color: map.get($combination, first);
+  }
+
+  .btn-#{'' + $name}-invert {
+    color: map.get($combination, first);
+    background-color: map.get($combination, second);
+    border-color: map.get($combination, second);
+  }
+}
+
+// -----------
+// Margins and paddings with responsive variations
+// -----------
+
+$m_p_sizes: (
+  auto: auto,
+  0: 0,
+  1: f.pxToRem(4),
+  2: f.pxToRem(8),
+  3: f.pxToRem(16),
+  4: f.pxToRem(24),
+  5: f.pxToRem(48)
+);
+
+// default
+@each $size, $value in $m_p_sizes {
+  .p-#{$size} {
+    padding: $value !important;
+  }
+
+  .pl-#{$size} {
+    padding-left: $value !important;
+  }
+
+  .pr-#{$size} {
+    padding-right: $value !important;
+  }
+
+  .pt-#{$size} {
+    padding-top: $value !important;
+  }
+
+  .pb-#{$size} {
+    padding-bottom: $value !important;
+  }
+
+  .py-#{$size} {
+    padding-top: $value;
+    padding-bottom: $value !important;
+  }
+
+  .px-#{$size} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+
+  .m-#{$size} {
+    margin: $value !important;
+  }
+
+  .ml-#{$size} {
+    margin-left: $value !important;
+  }
+
+  .mr-#{$size} {
+    margin-right: $value !important;
+  }
+
+  .mt-#{$size} {
+    margin-top: $value !important;
+  }
+
+  .mb-#{$size} {
+    margin-bottom: $value !important;
+  }
+
+  .my-#{$size} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+
+  .mx-#{$size} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+}
+
+// sm
+@media (min-width: 576px) {
+  @each $size, $value in $m_p_sizes {
+    .p-sm-#{$size} {
+      padding: $value !important;
+    }
+
+    .py-sm-#{$size} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+
+    .px-sm-#{$size} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+  }
+}
+
+// lg
+@media (min-width: 992px) {
+  @each $size, $value in $m_p_sizes {
+    .p-lg-#{$size} {
+      padding: $value !important;
+    }
+
+    .py-lg-#{$size} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+
+    .px-lg-#{$size} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+  }
+}
+
+// -----------
+// Relative width/height sizes
+// -----------
+
+$relative_sizes: (
+  100
+);
+
+@each $size in $relative_sizes {
+  .h-#{$size} {
+    height: #{$size + '%'};
+  }
+
+  .w-#{$size} {
+    width: #{$size + '%'};
+  }
+
+  .vh-#{$size} {
+    height: #{$size + 'vh'};
+  }
+
+  .vw-#{$size} {
+    width: #{$size + 'vw'};
+  }
+}
+
+// -----------
+// Text sizes
+// -----------
+
+$textSizes: (
+  3: (font-size: calc(f.pxToRem(24.4) + 3.3vw),
+    font-weight: 800,
+    line-height: 1.2,
+  ),
+  5: (font-size: calc(f.pxToRem(22.8) + 2.1vw),
+    font-weight: 800,
+    line-height: 1.2,
+  ),
+);
+
+$textSizesMW1200: map.merge($textSizes,
+    (3: (font-size: f.pxToRem(64),
+      ),
+      5: (font-size: f.pxToRem(48),
+      ),
+    ));
+
+@each $size, $pair in $textSizes {
+  .text-#{$size} {
+    @each $property, $value in $pair {
+      #{$property}: $value;
+    }
+  }
+}
+
+
+@media (min-width: 1200px) {
+  @each $size, $pair in $textSizesMW1200 {
+    .text-#{$size} {
+      @each $property, $value in $pair {
+        #{$property}: $value;
+      }
+    }
+  }
+}

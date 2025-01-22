@@ -1,0 +1,51 @@
+@use '../../../styles/animations.scss' as *;
+@use '../../../styles/functions.scss' as f;
+
+.cards-service {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  padding: 0;
+
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    opacity: 0;
+
+    &.show {
+      @extend .fadeInUp;
+      opacity: 1;
+    }
+
+    // each card will have a different delay of 0.2s from first to last
+    // e.g. 0.1s, 0.3s, 0.5s, 0.7s ...
+    @include f.staggered-animation-delay(4)
+  }
+}
+
+@media (min-width: 576px) {
+  .cards-service {
+    .card {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .cards-service {
+    .card {
+      width: 25%;
+    }
+  }
+}
